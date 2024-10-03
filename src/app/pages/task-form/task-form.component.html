@@ -1,0 +1,62 @@
+<div class="container p-4">
+    <h5 class="container text-center">New Task {{selectedData ? 'Edit':''}}</h5>
+    <form [formGroup]="taskForm" (ngSubmit)="onSubmit()">
+        <div class="row">
+            <div class="form-group col-6 mt-1">
+                <label for="assignedTo">Assigned To  <span class="text-danger">*</span></label>
+                <select class="form-control" id="assignedTo" formControlName="assignedTo">
+                    <option value="">Select a person</option>
+                    <option *ngFor="let person of assignedToOptions"[ngValue]="person">{{ person.name }}</option>
+                </select>
+                <div *ngIf="taskForm.get('assignedTo').invalid && (taskForm.get('assignedTo').touched || taskForm.get('assignedTo').dirty)"
+                    class="text-danger">
+                    Required
+                </div>
+            </div>
+
+            <div class="form-group col-6 mt-1">
+                <label for="status">Status <span class="text-danger">*</span></label>
+                <select class="form-control" id="status" formControlName="status">
+                    <option value="">Select status</option>
+                    <option *ngFor="let status of statusOptions" [ngValue]="status">{{ status.label }}</option>
+                </select>
+                <div *ngIf="taskForm.get('status').invalid && (taskForm.get('status').touched || taskForm.get('status').dirty)"
+                    class="text-danger">
+                    Required
+                </div>
+            </div>
+
+            <div class="form-group col-6 mt-1">
+                <label for="dueDate">Due Date <span class="text-danger">*</span></label>
+                <input type="date" class="form-control" id="dueDate" formControlName="dueDate">
+                <div *ngIf="taskForm.get('dueDate').invalid && (taskForm.get('dueDate').touched || taskForm.get('dueDate').dirty)"
+                    class="text-danger">
+                    Required
+                </div>
+            </div>
+
+            <div class="form-group col-6 mt-1">
+                <label for="priority">Priority <span class="text-danger">*</span></label>
+                <select class="form-control" id="priority" formControlName="priority">
+                    <option value="">Select priority</option>
+                    <option *ngFor="let priority of priorityOptions" [ngValue]="priority">{{ priority.label }}</option>
+                </select>
+                <div *ngIf="taskForm.get('priority').invalid && (taskForm.get('priority').touched || taskForm.get('priority').dirty)"
+                    class="text-danger">
+                    Required
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="comments">Comments</label>
+            <textarea class="form-control" id="comments" formControlName="comments" rows="3"></textarea>
+        </div>
+
+        <div class="justify-content-end d-flex">
+            <button type="button" class="btn btn-secondary mb-2 mt-3" (click)="onCancel()">Cancel</button> &nbsp;
+            <button type="submit" class="btn btn-primary mb-2 mt-3"
+                [disabled]="taskForm.invalid">{{selectedData?'Update':'Submit'}}</button>
+        </div>
+    </form>
+</div>
