@@ -13,7 +13,7 @@ import { TaskFormComponent } from '../task-form/task-form.component';
   styleUrl: './task-list.component.css'
 })
 export class TaskListComponent {
-  tasks = AppConstants.taskList
+  tasks = JSON.parse(JSON.stringify(AppConstants.taskList))
   assignedToOptions = AppConstants.assignedToOptions;
   statusOptions = AppConstants.statusOptions;
   priorityOptions = AppConstants.priorityOptions;
@@ -117,6 +117,11 @@ export class TaskListComponent {
 
       }
     })
+  }
+  refreshData() {
+    this.filteredTasks = JSON.parse(JSON.stringify(AppConstants.taskList));
+    this.tasks = JSON.parse(JSON.stringify(AppConstants.taskList))
+    this.updatePaginatedTasks();
   }
 }
 

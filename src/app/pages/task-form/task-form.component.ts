@@ -16,7 +16,7 @@ export class TaskFormComponent {
   assignedToOptions = AppConstants.assignedToOptions;
   statusOptions = AppConstants.statusOptions;
   priorityOptions = AppConstants.priorityOptions;
-  constructor(private fb: FormBuilder, private dialogRef: MatDialogRef<TaskFormComponent>,
+  constructor(private taskService :TaskService, private fb: FormBuilder, private dialogRef: MatDialogRef<TaskFormComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any) {
     this.selectedData = data.selectedRecord;
 
@@ -57,26 +57,26 @@ export class TaskFormComponent {
     this.dialogRef.close();
   }
   updateTask() {
-    // this.taskService.putData(`${'updateTask'}/${this.selectedData.id}`, this.taskForm.value).subscribe({
-    //   next: (res: any) => {
-    //     console.log(res)
-    //   }, error() {
+    this.taskService.putData(`${'updateTask'}/${this.selectedData.id}`, this.taskForm.value).subscribe({
+      next: (res: any) => {
+        console.log(res)
+      }, error() {
 
-    //   }, complete() {
+      }, complete() {
 
-    //   }
-    // })
+      }
+    })
   }
   addTask() {
-    // this.taskService.postData(`${'addTask'}`, this.taskForm.value).subscribe({
-    //   next: (res: any) => {
-    //     console.log(res)
-    //   }, error() {
+    this.taskService.postData(`${'addTask'}`, this.taskForm.value).subscribe({
+      next: (res: any) => {
+        console.log(res)
+      }, error() {
 
-    //   }, complete() {
+      }, complete() {
 
-    //   }
-    // })
+      }
+    })
   }
 
 }

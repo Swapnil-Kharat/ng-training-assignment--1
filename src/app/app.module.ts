@@ -1,5 +1,4 @@
 import { CommonModule, DatePipe } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatPaginatorModule } from '@angular/material/paginator';
@@ -21,7 +20,6 @@ import { TaskService } from './services/task.service';
         MatPaginatorModule,
         MatTableModule,
         ReactiveFormsModule,
-        HttpClientModule
     ],
     exports: [
         DatePipe,
@@ -30,6 +28,7 @@ import { TaskService } from './services/task.service';
         MatTableModule,
         FormsModule,
         RouterOutlet,
+        TaskFormComponent,
         ReactiveFormsModule,
     ],
     providers: [TaskService],
